@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Share card generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Great+Vibes&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; gap: 1.5rem; background: #1C0409; color: #F3E5AB; font-family: 'EB Garamond', Georgia, serif; padding: 2rem; box-sizing: border-box; }
+    canvas { width: min(100%, 900px); height: auto; border: 1px solid #D4AF37; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+    p { max-width: 40rem; text-align: center; line-height: 1.6; }
+    button { font: 600 .8rem 'Cinzel', serif; letter-spacing: .2em; text-transform: uppercase; padding: .9rem 1.8rem; border-radius: 999px; border: 0; cursor: pointer; color: #2A070D; background: linear-gradient(135deg, #F6E3A8, #D4AF37 55%, #B8902A); }
+  </style>
+</head>
+<body>
+  <p>This is the preview image shown when the V2 link is shared on WhatsApp, iMessage, etc.
+     It is built from <code>js/config.js</code> — after changing names or the date, download it again and replace <code>assets/og.jpg</code>.</p>
+  <canvas id="card" width="1200" height="630"></canvas>
+  <button id="dl">Download og.jpg</button>
+  <script src="js/config.js"></script>
+  <script src="js/art.js"></script>
+  <script>
+  (async () => {
+    const W = window.WEDDING;
+    await Promise.all(['150px "Great Vibes"', '600 30px "Cinzel"', 'italic 40px "Cormorant Garamond"', '30px "Tiro Devanagari Hindi"', '40px "Cormorant Garamond"'].map((f) => document.fonts.load(f)));
+    const c = document.getElementById('card'), ctx = c.getContext('2d');
+    const g = ctx.createRadialGradient(600, 240, 60, 600, 320, 760);
+    g.addColorStop(0, '#6E1325'); g.addColorStop(0.55, '#3D0B14'); g.addColorStop(1, '#1C0409');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, 1200, 630);
+    const svgImg = (svg) => new Promise((res) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); });
+    const mi = await svgImg(Art.mandala({ color: '#E9CC7A', fill: true }).replace('<svg ', '<svg width="1000" height="1000" '));
+    if (mi) { ctx.globalAlpha = 0.16; ctx.drawImage(mi, 180, -105, 840, 840); ctx.globalAlpha = 1; }
+    const gi = await svgImg(Art.garland(1200));
+    if (gi) ctx.drawImage(gi, 0, -4);
+    const gan = await svgImg(Art.ganesha('#E9CC7A').replace('<svg ', '<svg width="200" height="200" '));
+    if (gan) ctx.drawImage(gan, 558, 150, 84, 84);
+    const d = new Date(`${W.wedding.date}T${W.wedding.time || '00:00'}:00+05:30`);
+    const f = (o) => new Intl.DateTimeFormat('en-IN', { timeZone: 'Asia/Kolkata', ...o }).format(d);
+    const dateLine = `${f({ weekday: 'long' })}, ${f({ day: 'numeric' })} ${f({ month: 'long' })} ${f({ year: 'numeric' })}`.toUpperCase();
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#E9CC7A'; ctx.font = '22px "Tiro Devanagari Hindi"'; ctx.fillText('॥ श्री गणेशाय नमः ॥', 600, 258);
+    ctx.fillStyle = '#D4AF37'; ctx.font = '600 16px "Cinzel"'; ctx.letterSpacing = '9px'; ctx.fillText('SHUBH VIVAH', 604, 292); ctx.letterSpacing = '0px';
+    const tg = ctx.createLinearGradient(0, 300, 0, 400); tg.addColorStop(0, '#FFF6D5'); tg.addColorStop(0.45, '#F3E5AB'); tg.addColorStop(1, '#C9A22F');
+    ctx.fillStyle = tg; ctx.font = '118px "Great Vibes"'; ctx.shadowColor = 'rgba(212,175,55,.35)'; ctx.shadowBlur = 24;
+    ctx.fillText(W.bride.name, 350, 360); ctx.fillText(W.groom.name, 850, 360);
+    ctx.shadowBlur = 0; ctx.fillStyle = '#D4AF37'; ctx.font = 'italic 54px "Cormorant Garamond"'; ctx.fillText('&', 600, 356);
+    ctx.fillStyle = '#F3E5AB'; ctx.font = 'italic 30px "Cormorant Garamond"'; ctx.fillText('are getting married', 600, 432);
+    ctx.strokeStyle = 'rgba(212,175,55,.7)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(420, 460); ctx.lineTo(780, 460); ctx.stroke();
+    ctx.fillStyle = '#F8EEC9'; ctx.font = '500 24px "Cinzel"'; ctx.letterSpacing = '5px'; ctx.fillText(dateLine, 603, 490); ctx.letterSpacing = '0px';
+    ctx.fillStyle = '#E9CC7A'; ctx.font = 'italic 24px "Cormorant Garamond"'; ctx.fillText(W.wedding.city, 600, 526);
+    ctx.fillStyle = '#FBF3E3'; ctx.font = '28px "Cormorant Garamond"'; ctx.fillText('You and your family are cordially invited', 600, 580);
+    document.getElementById('dl').onclick = () => {
+      const a = document.createElement('a'); a.download = 'og.jpg'; a.href = c.toDataURL('image/jpeg', 0.88); a.click();
+    };
+  })();
+  </script>
+</body>
+</html>

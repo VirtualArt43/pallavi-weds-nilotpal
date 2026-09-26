@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pallavi &amp; Nilotpal — Wedding Invitation</title>
+  <meta name="description" content="You and your family are cordially invited to celebrate the wedding of Pallavi & Nilotpal on Thursday, 26th November 2026.">
+  <meta name="theme-color" content="#1C040B">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pallavi & Nilotpal — Wedding Invitation">
+  <meta property="og:description" content="You and your family are cordially invited · 26th November 2026">
+  <!-- WhatsApp needs full addresses here. If the site moves, change both to the new address. -->
+  <meta property="og:url" content="https://virtualart43.github.io/pallavi-weds-nilotpal/">
+  <meta property="og:image" content="https://virtualart43.github.io/pallavi-weds-nilotpal/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%235A101C' stroke='%23D4AF37' stroke-width='3'/%3E%3Ctext x='32' y='44' font-size='32' text-anchor='middle' fill='%23E9CC7A' font-family='serif'%3E%E0%A5%90%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Great+Vibes&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/v2.css?v=4">
+</head>
+<body class="is-locked">
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs><clipPath id="clip-arch" clipPathUnits="objectBoundingBox"><path id="clip-arch-path" d="M0 1L0 0L1 0L1 1Z"/></clipPath></defs>
+  </svg>
+
+  <!-- ====================== LOADER ====================== -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__glow"></div>
+    <div class="loader__ganesha" id="loader-ganesha"></div>
+    <p class="loader__shree">॥ श्री गणेशाय नमः ॥</p>
+    <div class="loader__bar"><span></span></div>
+  </div>
+
+  <!-- ====================== PALACE DOORS ====================== -->
+  <div id="gate" class="gate" role="button" tabindex="0" aria-label="Open the doors to the invitation">
+    <div class="gate__scene" id="gate-scene">
+      <div class="gate__doorway" id="gate-doorway">
+        <div class="gate__leaf gate__leaf--l"><div class="gate__leaf-art"></div><div class="gate__seal"></div><div class="gate__shade"></div></div>
+        <div class="gate__leaf gate__leaf--r"><div class="gate__leaf-art"></div><div class="gate__seal"></div><div class="gate__shade"></div></div>
+      </div>
+      <div class="gate__wall" id="gate-wall"></div>
+      <div class="gate__lamp gate__lamp--l" id="gate-lamp-l"></div>
+      <div class="gate__lamp gate__lamp--r" id="gate-lamp-r"></div>
+      <div class="gate__toran" id="gate-toran"></div>
+      <div class="gate__content" id="gate-content">
+        <p class="gate__vivah">शुभ विवाह</p>
+        <div class="gate__below">
+          <p class="gate__names gold-text"><span data-w="bride.name">Pallavi</span><span class="amp">&amp;</span><span data-w="groom.name">Nilotpal</span></p>
+          <p class="gate__date" id="gate-date">26 · 11 · 2026</p>
+          <button type="button" class="gate__btn" id="gate-btn">Open the doors</button>
+          <p class="gate__hint">tap anywhere to enter</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="fx-petals" class="fx-petals" aria-hidden="true"></canvas>
+
+  <!-- ====================== NAV ====================== -->
+  <header id="nav" class="nav">
+    <a class="nav__brand" href="#home" data-scroll><span class="nav__seal" id="nav-seal"></span><span class="nav__names"><span data-w="bride.name">Pallavi</span> <i>&amp;</i> <span data-w="groom.name">Nilotpal</span></span></a>
+    <nav aria-label="Sections"><ul class="nav__links" id="nav-links"></ul></nav>
+    <button class="nav__burger" id="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+    <div class="nav__progress"><span id="nav-progress"></span></div>
+  </header>
+  <div class="menu" id="menu" aria-hidden="true"><div class="menu__mandala" id="menu-mandala"></div><ul id="menu-links"></ul></div>
+
+  <main id="main">
+    <!-- ====================== HERO ====================== -->
+    <section id="home" class="hero" data-nav="Home" data-nav-hi="मुख्य">
+      <div class="hero__sky"></div>
+      <canvas class="hero__fx" id="hero-fx"></canvas>
+      <div class="hero__moon" id="hero-moon"></div>
+      <div class="hero__mandala" id="hero-mandala"></div>
+      <div class="hero__palace" id="hero-palace"></div>
+      <div class="hero__mist"></div>
+      <div class="hero__lamps" id="hero-lamps"></div>
+      <div class="hero__toran" id="hero-toran"></div>
+      <div class="hero__content" id="hero-content">
+        <div class="hero__ganesha" id="hero-ganesha"></div>
+        <p class="hero__vivah">शुभ विवाह</p>
+        <h1 class="hero__names">
+          <span class="hero__name" data-w="bride.name">Pallavi</span>
+          <span class="hero__amp">&amp;</span>
+          <span class="hero__name" data-w="groom.name">Nilotpal</span>
+        </h1>
+        <p class="hero__sub">are getting married</p>
+        <div class="hero__orn" data-ornament></div>
+        <p class="hero__date" id="hero-date"></p>
+        <p class="hero__city" data-w="wedding.city"></p>
+        <p class="hero__invite">You and your family are <em>cordially invited</em></p>
+        <div class="countdown" id="countdown" aria-live="off"></div>
+        <div class="hero__actions">
+          <button type="button" class="btn btn--gold" id="btn-save"><span data-icon="calendar"></span>Save the Date</button>
+          <a class="btn" href="#events" data-scroll>View Celebrations</a>
+        </div>
+      </div>
+      <a class="hero__cue" href="#invite" data-scroll aria-label="Scroll to the invitation"></a>
+    </section>
+
+    <!-- ====================== MARQUEE ====================== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__band marquee__band--back"><div class="marquee__track" id="mq-back"></div></div>
+      <div class="marquee__band marquee__band--front"><div class="marquee__track" id="mq-front"></div></div>
+    </div>
+
+    <!-- ====================== INVITATION SCROLL ====================== -->
+    <section id="invite" class="section section--velvet invite" data-nav="Invitation" data-nav-hi="निमंत्रण">
+      <header class="shead"><span class="shead__hi">निमंत्रण</span><h2 class="shead__title">The Invitation</h2><div class="shead__orn" data-ornament></div></header>
+      <div class="scroll" id="scroll">
+        <div class="scroll__rod scroll__rod--top"><i></i></div>
+        <div class="scroll__paper" id="scroll-paper"><div class="scroll__watermark" id="scroll-watermark"></div><div id="scroll-content"></div></div>
+        <div class="scroll__rod scroll__rod--bottom"><i></i></div>
+      </div>
+    </section>
+
+    <!-- ====================== COUPLE ====================== -->
+    <section id="couple" class="section section--velvet couple" data-nav="Couple" data-nav-hi="वर-वधू">
+      <header class="shead"><span class="shead__hi">वर-वधू</span><h2 class="shead__title">The Bride &amp; The Groom</h2><div class="shead__orn" data-ornament></div></header>
+      <div class="couple__layout">
+        <div class="couple__stage">
+          <div class="couple__mandala"><div id="couple-mandala"></div></div>
+          <div class="portrait" id="portrait">
+            <div class="portrait__glow"></div>
+            <div class="portrait__img">
+              <div class="portrait__backdrop" id="portrait-backdrop"></div>
+              <picture class="portrait__bg" id="portrait-bg" hidden><source id="portrait-bg-tall" media="(max-width: 700px)"><img id="portrait-bg-img" alt=""></picture>
+              <img id="portrait-img" class="portrait__couple" alt="Pallavi and Nilotpal">
+              <picture class="portrait__fg" id="portrait-fg" hidden><source id="portrait-fg-tall" media="(max-width: 700px)"><img id="portrait-fg-img" alt=""></picture>
+              <div class="curtain curtain--l"></div><div class="curtain curtain--r"></div>
+            </div>
+            <div class="portrait__frame" id="portrait-frame"><span class="portrait__finial" id="portrait-finial"></span></div>
+          </div>
+          <p class="portrait__note" id="portrait-note" hidden>stand-in photo — the portrait of the couple goes here</p>
+        </div>
+        <div class="person person--groom" data-reveal>
+          <p class="person__role">The Groom</p>
+          <h3 class="person__name gold-text" data-w="groom.name">Nilotpal</h3>
+          <p class="person__parents">Son of <span data-w="groom.parents"></span></p>
+          <p class="person__about" data-w="groom.about"></p>
+        </div>
+        <div class="couple__knot" data-reveal><span class="line"></span><span class="heart" data-icon="heart"></span><span class="tag" data-w="tagline"></span><span class="line"></span></div>
+        <div class="person person--bride" data-reveal>
+          <p class="person__role">The Bride</p>
+          <h3 class="person__name gold-text" data-w="bride.name">Pallavi</h3>
+          <p class="person__parents">Daughter of <span data-w="bride.parents"></span></p>
+          <p class="person__about" data-w="bride.about"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== CELEBRATIONS ====================== -->
+    <section id="events" class="events" data-nav="Celebrations" data-nav-hi="उत्सव">
+      <div class="events__bg" aria-hidden="true"><div id="events-layers"></div><div class="events__mandala"><div id="events-mandala"></div></div><div class="events__grain"></div></div>
+      <header class="shead"><span class="shead__hi">उत्सव</span><h2 class="shead__title">Wedding Celebrations</h2><div class="shead__orn" data-ornament="#F3E5AB"></div>
+        <p class="shead__intro">From the mehendi to the pheras, two days of colour, blessings and celebration. We would love to have you with us.</p></header>
+      <div id="scenes"></div>
+      <div class="events__foot" data-reveal><button type="button" class="btn" id="btn-all-ics"><span data-icon="calendar"></span>Add all celebrations to calendar</button></div>
+    </section>
+    <nav class="events__rail" id="events-rail" aria-label="Celebrations"></nav>
+
+    <!-- ====================== VENUE ====================== -->
+    <section id="venue" class="section section--ivory venue" data-nav="Venue" data-nav-hi="स्थल">
+      <header class="shead"><span class="shead__hi">विवाह स्थल</span><h2 class="shead__title">The Venue</h2><div class="shead__orn" data-ornament="#B8902A"></div></header>
+      <div class="wrap">
+        <div class="venue__grid">
+          <div class="venue__card" data-reveal>
+            <div class="venue__art" id="venue-art"><span class="venue__pin" data-icon="pin"></span></div>
+            <div class="venue__body">
+              <h3 data-w="venue.name"></h3>
+              <address data-w="venue.address"></address>
+              <p data-w="venue.note"></p>
+              <a class="btn btn--gold" id="btn-directions" href="#" target="_blank" rel="noopener"><span data-icon="directions"></span>Get Directions</a>
+            </div>
+          </div>
+          <div class="venue__map" data-reveal>
+            <iframe id="map" title="Map of the venue" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <button type="button" class="map-shield" id="map-shield"><span>Tap to explore the map</span></button>
+          </div>
+        </div>
+        <div class="travel" id="travel"></div>
+      </div>
+    </section>
+
+    <!-- ====================== FAMILY ====================== -->
+    <section id="family" class="section section--velvet family" data-nav="Family" data-nav-hi="परिवार">
+      <header class="shead"><span class="shead__hi">आशीर्वाद</span><h2 class="shead__title">With Love &amp; Blessings</h2><div class="shead__orn" data-ornament></div></header>
+      <div class="wrap">
+        <div class="blessings" id="blessings" data-reveal></div>
+        <div class="families" id="families"></div>
+        <div class="manuhar" id="manuhar" data-reveal></div>
+      </div>
+    </section>
+
+    <!-- ====================== CONTACT ====================== -->
+    <section id="contact" class="section section--ivory contact" data-nav="Contact" data-nav-hi="संपर्क">
+      <header class="shead"><span class="shead__hi">संपर्क</span><h2 class="shead__title">For Any Details</h2><div class="shead__orn" data-ornament="#B8902A"></div>
+        <p class="shead__intro">We would be delighted to help with anything at all — directions, your stay, or simply to say hello.</p></header>
+      <div class="wrap"><div class="contacts" id="contacts"></div></div>
+    </section>
+
+    <!-- ====================== FINALE ====================== -->
+    <section id="finale" class="finale">
+      <div class="finale__sky"></div>
+      <canvas class="finale__fx" id="finale-fx"></canvas>
+      <div class="finale__palace" id="finale-palace"></div>
+      <div class="finale__content">
+        <p class="finale__hi" data-reveal>आपकी गरिमामयी उपस्थिति की प्रतीक्षा में</p>
+        <h2 class="finale__title" data-reveal>We eagerly await your presence</h2>
+        <p class="finale__names gold-text" data-reveal><span data-w="bride.name">Pallavi</span> <span class="amp">&amp;</span> <span data-w="groom.name">Nilotpal</span></p>
+        <p class="finale__date" id="finale-date" data-reveal></p>
+        <p class="finale__tag" data-w="hashtag" data-reveal></p>
+        <div class="finale__diyas" id="finale-diyas" data-reveal></div>
+        <p class="finale__hint" id="finale-hint" data-reveal>Tap the sky to light a firework</p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-foot">With love and blessings from both our families · <span class="hindi">॥ शुभ विवाह ॥</span></footer>
+
+  <button id="music" class="music" hidden aria-label="Play or pause music"><span data-icon="music"></span><span class="bars"><i></i><i></i><i></i><i></i></span></button>
+  <audio id="bgm" loop preload="none"></audio>
+
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/vendor/lenis.min.js"></script>
+  <script src="js/config.js?v=4"></script>
+  <script src="js/art.js?v=4"></script>
+  <script src="js/scenes.js?v=4"></script>
+  <script src="js/fx.js?v=4"></script>
+  <script src="js/sound.js?v=4"></script>
+  <script src="js/app.js?v=4"></script>
+</body>
+</html>
