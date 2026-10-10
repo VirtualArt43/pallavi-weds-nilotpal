@@ -9,11 +9,15 @@ phone numbers) is in **`js/config.js`**; nothing else needs touching.
 
 0. **Intro film (34 s):** plays full screen first (`js/intro.js`, `assets/intro/`). Rudra narrates in Hindi over a
    moonlit Japanese and Indian world: shooting stars tie the red knot, lanterns rise over the ghats, the names in a
-   sakura avenue, koi and a lotus, namaste hands with mehendi, then through a torii gate. It starts with sound if
-   the browser allows, otherwise muted with a "Tap for sound" chip (the tap restarts it with sound). At the end
-   "Open Invitation" opens the palace doors; Skip goes straight in. Phones get `intro-phone.mp4` (720x1280),
-   wide screens `intro-wide.mp4` (1920x1080). Add `?nointro` (or `?open`) to the URL to skip it while editing.
-   The film is made in `../intro-video/` (see its README).
+   sakura avenue, koi and a lotus, a family bowing in namaste, then through a torii gate. It always plays with
+   sound. Where the browser allows sound on its own (some computers) it simply starts; phones never let a page
+   start sound by itself, so they first see a start screen (the film's moonlit sky, the names, a jewelled gold
+   medallion and "Tap to begin"), and that one tap starts the film with sound from the first word. When the film
+   ends the palace doors open by themselves, with no button. A tiny, faint "skip" appears at the bottom after
+   6 seconds. Phones get `intro-phone.mp4` (720x1280), wide screens `intro-wide.mp4` (1920x1080). The start
+   screen uses `start-sky.jpg`, `start-sky-soft.jpg` (the blur beside it on wide screens), `gold-medallion.webp`
+   and `gold-ring.webp`. Add `?nointro` (or `?open`) to skip the film while editing, or `?tap` to always see the
+   start screen. The film is made in `../intro-video/` (see its README).
 1. **Loader:** Lord Ganesha draws himself in gold, with ॥ श्री गणेशाय नमः ॥
 2. **Palace doors:** carved doors with jali arches, mandala medallions, brass knockers, a
    marigold toran and lit brass lamps. Tapping breaks the PN seal in half; the doors swing

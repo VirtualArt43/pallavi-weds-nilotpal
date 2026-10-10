@@ -643,35 +643,81 @@ h1, h2, h3 { font-weight: 500; line-height: 1.1; }
 }
 
 /* --------------------------------------------------------------- intro film (js/intro.js) */
-.intro { position: fixed; inset: 0; z-index: 400; background: #000; overflow: hidden; transition: opacity .8s ease; }
+.intro { position: fixed; inset: 0; z-index: 400; background: #000; overflow: hidden; transition: opacity .9s ease; container-type: size; }
 .intro.is-leaving { opacity: 0; pointer-events: none; }
 .intro__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; }
 .intro button { font: inherit; -webkit-tap-highlight-color: transparent; cursor: pointer; }
-.intro__sound {
-  position: absolute; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 9vh); transform: translate(-50%, 10px);
-  display: inline-flex; align-items: center; gap: .55rem; padding: .72rem 1.3rem; border-radius: 999px;
-  color: #FFF1D6; background: rgba(40, 8, 18, .55); border: 1px solid rgba(233, 196, 106, .75);
-  font-family: 'Cinzel', serif; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase;
-  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-  opacity: 0; pointer-events: none; transition: opacity .5s ease, transform .5s ease;
+
+/* the first screen: the film's moonlit sky, the names, and a jewelled gold button.
+   The moon rides in the top quarter of every screen and everything else sits below it. */
+.intro__begin {
+  position: absolute; inset: 0; z-index: 2; border: 0; overflow: hidden; color: #FFF1D6;
+  background: #05030a url("../assets/intro/start-sky-soft.jpg") center / cover;   /* only seen beside the sky on wide screens */
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(.7rem, 2.2vh, 1.3rem);
+  padding: 29vh 16px 12vh; padding: 29cqh 16px 12cqh;
+  opacity: 0; pointer-events: none; transition: opacity .8s ease;
 }
-.intro__sound svg { width: 1.15rem; height: 1.15rem; color: #E9C46A; }
-.intro__sound.is-shown { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); animation: intro-pulse 2.2s ease-in-out infinite; }
+.intro__begin.is-shown { opacity: 1; pointer-events: auto; }
+.intro__begin.is-going { opacity: 0; pointer-events: none; transition-duration: .5s; }
+/* the painted sky as one tall portrait panel, lifted so the moon sits high; on wide screens its sides melt into a blur of itself */
+.intro__sky {
+  position: absolute; top: -18%; bottom: -6%; left: 50%; translate: -50% 0; z-index: -2;
+  width: 82.67vh; width: 82.67cqh;   /* 124% of the height, at the painting's 2:3 shape */
+  background: url("../assets/intro/start-sky.jpg") center / cover;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent); mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  animation: intro-drift 26s ease-in-out infinite alternate;
+}
+/* night falls a little over the clouds, with a soft dark pool where the names and the medallion sit */
+.intro__begin::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse 66% 38% at 50% 58%, rgba(6, 3, 12, .6), rgba(6, 3, 12, .25) 60%, rgba(6, 3, 12, 0) 86%),
+    radial-gradient(ellipse 80% 62% at 50% 46%, rgba(0, 0, 0, 0) 42%, rgba(4, 2, 8, .7) 100%),
+    linear-gradient(180deg, rgba(5, 3, 10, .3), rgba(5, 3, 10, .2) 30%, rgba(5, 3, 10, .42) 58%, rgba(5, 3, 10, .82));
+}
+/* very short screens (a phone on its side): lift the moon nearly out of view and tighten everything */
+@media (max-height: 520px) {
+  .intro__sky { top: -42%; }
+  .intro__begin { padding: 5vh 16px 4vh; padding: 5cqh 16px 4cqh; gap: .5rem; }
+}
+.intro__sparkles { position: absolute; inset: 0; z-index: -1; }
+.intro__sparkles i { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #FFF6DA; box-shadow: 0 0 8px 2px rgba(255, 230, 170, .8); opacity: 0; animation: intro-twinkle 3.6s ease-in-out infinite; }
+.intro__sparkles i:nth-child(1) { left: 14%; top: 18%; animation-delay: .2s; } .intro__sparkles i:nth-child(2) { left: 82%; top: 12%; animation-delay: 1.4s; }
+.intro__sparkles i:nth-child(3) { left: 70%; top: 34%; animation-delay: 2.3s; } .intro__sparkles i:nth-child(4) { left: 24%; top: 40%; animation-delay: .9s; }
+.intro__sparkles i:nth-child(5) { left: 88%; top: 62%; animation-delay: 3s; }   .intro__sparkles i:nth-child(6) { left: 9%; top: 70%; animation-delay: 1.9s; }
+.intro__sparkles i:nth-child(7) { left: 58%; top: 82%; animation-delay: 2.7s; } .intro__sparkles i:nth-child(8) { left: 38%; top: 9%; animation-delay: .5s; }
+.intro__shubh { font-family: 'Tiro Devanagari Hindi', serif; font-size: clamp(1.05rem, 3.6vw, 1.35rem); letter-spacing: .1em; color: #EFCB78; text-shadow: 0 0 14px rgba(255, 200, 110, .45); }
+.intro__names {
+  font-family: 'Great Vibes', cursive; font-size: clamp(2.6rem, min(11vw, 7.6vh), 4.4rem); line-height: 1.05; margin: -.12em 0 clamp(.2rem, 1vh, .8rem);
+  padding: .12em .4em .2em;   /* room for the script's swashes, which the gold fill would otherwise clip */
+  background: linear-gradient(180deg, #FFF6D2 0%, #F2CF7C 45%, #C99236 75%, #F7DE95 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 2px 6px rgba(20, 6, 20, .7)) drop-shadow(0 0 18px rgba(255, 190, 100, .35));
+}
+.intro__names em { font-style: normal; font-size: .7em; margin: 0 .2em 0 .05em; }
+.intro__medal { --medal: clamp(140px, min(42vw, 24vh), 200px); position: relative; width: var(--medal); aspect-ratio: 1; display: grid; place-items: center; margin: calc(var(--medal) * .16) 0 calc(var(--medal) * .12); }
+.intro__medal img { position: absolute; display: block; max-width: none; pointer-events: none; }
+.intro__halo { width: 140%; height: 140%; left: -20%; top: -20%; opacity: .85; animation: intro-spin 36s linear infinite; filter: drop-shadow(0 0 10px rgba(255, 200, 110, .5)); }
+.intro__coin { width: 100%; height: 100%; inset: 0; filter: drop-shadow(0 8px 20px rgba(0, 0, 0, .55)) drop-shadow(0 0 22px rgba(255, 196, 100, .55)); animation: intro-breathe 2.8s ease-in-out infinite; }
+.intro__play { position: relative; width: 26%; height: 26%; margin-left: 5%; filter: drop-shadow(0 1px 1px rgba(255, 250, 220, .7)) drop-shadow(0 -1px 1px rgba(80, 40, 0, .5)); }
+.intro__begin:active .intro__medal { transform: scale(.95); transition: transform .12s ease; }
+.intro__tap {
+  font-family: 'Cinzel', serif; font-weight: 600; font-size: clamp(.9rem, 3.4vw, 1.08rem); letter-spacing: .34em; padding-left: .34em; text-transform: uppercase;
+  background: linear-gradient(180deg, #FFF4C8, #E2B04E 55%, #B07A26); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 200, 110, .4));
+}
+.intro__hint { display: inline-flex; align-items: center; gap: .45rem; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(.95rem, 3.4vw, 1.08rem); color: rgba(255, 241, 214, .78); }
+.intro__hint svg { width: 1.05rem; height: 1.05rem; color: #E9C46A; }
+
+/* skip: tiny and quiet, near the bottom, only after a few seconds of the film */
 .intro__skip {
-  position: absolute; top: calc(env(safe-area-inset-top, 0px) + 14px); right: 14px; padding: .45rem 1rem; border-radius: 999px;
-  color: rgba(255, 241, 214, .85); background: rgba(10, 4, 12, .35); border: 1px solid rgba(255, 241, 214, .3);
-  font-family: 'Cinzel', serif; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase;
+  position: absolute; z-index: 3; right: 10px; bottom: calc(env(safe-area-inset-bottom, 0px) + 8px); padding: 6px 8px; border: 0; background: none;
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 11px; letter-spacing: .08em; color: rgba(255, 241, 214, .38);
+  opacity: 0; pointer-events: none; transition: opacity 1.2s ease;
 }
-.intro.is-ended .intro__skip { opacity: 0; pointer-events: none; }
-.intro__skip { transition: opacity .5s ease; }
-.intro__open {
-  position: absolute; left: 50%; top: 70.5%; transform: translate(-50%, -50%) scale(.96);
-  padding: 1.05rem 2.4rem; border-radius: 999px; white-space: nowrap;
-  color: #FFF1D6; background: linear-gradient(180deg, #7A1A28, #4A0C18); border: 1.5px solid #E9C46A;
-  font-family: 'Cinzel', serif; font-weight: 600; font-size: clamp(.85rem, 1.6vw + .55rem, 1.05rem); letter-spacing: .2em; text-transform: uppercase;
-  box-shadow: 0 0 26px rgba(255, 200, 110, .45);
-  opacity: 0; pointer-events: none; transition: opacity .8s ease, transform .8s ease;
-}
-.intro__open.is-shown { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); animation: intro-glow 2.4s ease-in-out infinite; }
-@keyframes intro-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(233, 196, 106, .45); } 50% { box-shadow: 0 0 0 12px rgba(233, 196, 106, 0); } }
-@keyframes intro-glow { 0%, 100% { box-shadow: 0 0 22px rgba(255, 200, 110, .4); } 50% { box-shadow: 0 0 44px rgba(255, 200, 110, .75); } }
+.intro__skip.is-shown { opacity: 1; pointer-events: auto; }
+
+@keyframes intro-drift { from { transform: scale(1.06) translateY(0); } to { transform: scale(1) translateY(-1.5%); } }
+@keyframes intro-twinkle { 0%, 100% { opacity: 0; transform: scale(.5); } 50% { opacity: 1; transform: scale(1.2); } }
+@keyframes intro-spin { to { transform: rotate(360deg); } }
+@keyframes intro-breathe { 0%, 100% { filter: drop-shadow(0 8px 20px rgba(0, 0, 0, .55)) drop-shadow(0 0 18px rgba(255, 196, 100, .45)); } 50% { filter: drop-shadow(0 8px 20px rgba(0, 0, 0, .55)) drop-shadow(0 0 34px rgba(255, 206, 120, .85)); } }
+@media (prefers-reduced-motion: reduce) { .intro__sky, .intro__halo, .intro__coin, .intro__sparkles i { animation: none; } }
