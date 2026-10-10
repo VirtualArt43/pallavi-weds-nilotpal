@@ -7,6 +7,13 @@ phone numbers) is in **`js/config.js`**; nothing else needs touching.
 
 ## What happens on the page
 
+0. **Intro film (34 s):** plays full screen first (`js/intro.js`, `assets/intro/`). Rudra narrates in Hindi over a
+   moonlit Japanese and Indian world: shooting stars tie the red knot, lanterns rise over the ghats, the names in a
+   sakura avenue, koi and a lotus, namaste hands with mehendi, then through a torii gate. It starts with sound if
+   the browser allows, otherwise muted with a "Tap for sound" chip (the tap restarts it with sound). At the end
+   "Open Invitation" opens the palace doors; Skip goes straight in. Phones get `intro-phone.mp4` (720x1280),
+   wide screens `intro-wide.mp4` (1920x1080). Add `?nointro` (or `?open`) to the URL to skip it while editing.
+   The film is made in `../intro-video/` (see its README).
 1. **Loader:** Lord Ganesha draws himself in gold, with ॥ श्री गणेशाय नमः ॥
 2. **Palace doors:** carved doors with jali arches, mandala medallions, brass knockers, a
    marigold toran and lit brass lamps. Tapping breaks the PN seal in half; the doors swing
@@ -95,6 +102,12 @@ from this folder:
 
 ```bash
 git add -A && git commit -m "Update wedding timings" && git push
+```
+
+If the `gh` CLI's active account is not VirtualArt43, push with that account's login for this one command:
+
+```bash
+GH_TOKEN="$(gh auth token --user VirtualArt43)" git push origin main
 ```
 
 When you change `css/` or `js/` files, bump the `?v=` number on their tags in `index.html` so
