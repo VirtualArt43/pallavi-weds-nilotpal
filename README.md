@@ -10,14 +10,17 @@ phone numbers) is in **`js/config.js`**; nothing else needs touching.
 0. **Intro film (34 s):** plays full screen first (`js/intro.js`, `assets/intro/`). Rudra narrates in Hindi over a
    moonlit Japanese and Indian world: shooting stars tie the red knot, lanterns rise over the ghats, the names in a
    sakura avenue, koi and a lotus, a family bowing in namaste, then through a torii gate. It always plays with
-   sound. Where the browser allows sound on its own (some computers) it simply starts; phones never let a page
-   start sound by itself, so they first see a start screen (the film's moonlit sky, the names, a jewelled gold
-   medallion and "Tap to begin"), and that one tap starts the film with sound from the first word. When the film
-   ends the palace doors open by themselves, with no button. A tiny, faint "skip" appears at the bottom after
+   sound. Every visit, a refresh included, opens on the same start screen (the film's moonlit sky, the names, a
+   jewelled gold medallion and "Tap to begin"), and that one tap starts the film with sound from the first
+   word. The film never tries to start by itself: phones never allow sound without a tap, and some browsers
+   would allow it on a refresh, which skipped the start screen and looked like the old version. When the film
+   ends the palace doors open by themselves, with no button, and the site starts at the top. If the film is
+   paused from outside (screen locked, a call), it carries on when the guest comes back, or the start screen
+   returns as "Tap to continue" and picks up where it stopped. A tiny, faint "skip" appears at the bottom after
    6 seconds. Phones get `intro-phone.mp4` (720x1280), wide screens `intro-wide.mp4` (1920x1080). The start
    screen uses `start-sky.jpg`, `start-sky-soft.jpg` (the blur beside it on wide screens), `gold-medallion.webp`
-   and `gold-ring.webp`. Add `?nointro` (or `?open`) to skip the film while editing, or `?tap` to always see the
-   start screen. The film is made in `../intro-video/` (see its README).
+   and `gold-ring.webp`. Add `?nointro` (or `?open`) to skip the film while editing. The film is made in
+   `../intro-video/` (see its README).
 1. **Loader:** Lord Ganesha draws himself in gold, with ॥ श्री गणेशाय नमः ॥
 2. **Palace doors:** carved doors with jali arches, mandala medallions, brass knockers, a
    marigold toran and lit brass lamps. Tapping breaks the PN seal in half; the doors swing
@@ -114,6 +117,11 @@ If the `gh` CLI's active account is not VirtualArt43, push with that account's l
 GH_TOKEN="$(gh auth token --user VirtualArt43)" git push origin main
 ```
 
-When you change `css/` or `js/` files, bump the `?v=` number on their tags in `index.html` so
-phones don't keep an old copy. If the site ever moves to another address, update `og:url` and
+Every time you publish a change, bump the `?v=` number on all the `css/` and `js/` tags in `index.html`
+(they share one number). GitHub Pages lets browsers keep a page for up to 10 minutes, so a phone that
+visited just before an update could open the old copy. `js/intro.js` fixes that by itself: on every
+visit it asks the server for the live page, and if the live `js/intro.js?v=` number is higher than its
+own, it reloads once onto the new version before the film starts. That only works if the number goes up.
+Bump the `?v=` on the films and posters in `js/intro.js` only when those files change, so guests don't
+download the film again for nothing. If the site ever moves to another address, update `og:url` and
 `og:image` in `index.html` too; WhatsApp needs those full links for the preview card.
