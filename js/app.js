@@ -30,6 +30,9 @@
   const timeSpan = (ev) => (!ev.end || ev.end >= '23:30' ? `${time12(ev.start)} onwards` : `${time12(ev.start)} – ${time12(ev.end)}`);
 
   let lenis = null, opened = false, petals = null, heroSky = null, finaleSky = null, heroTl = null;
+  // the intro film (js/intro.js) waits for this before it opens the doors
+  let siteReady;
+  window.__siteReady = new Promise((resolve) => { siteReady = resolve; });
 
   /* ------------------------------------------------------------ text */
   function bindText() {
@@ -687,6 +690,8 @@
     await wait(Math.max(0, minShow - (performance.now() - started)));
     $('#loader').classList.add('is-done');
     gateIntro();
+    window.__openGate = openGate;
+    siteReady();
     const q = new URLSearchParams(location.search);
     if (q.has('open')) setTimeout(openGate, 400);
   }

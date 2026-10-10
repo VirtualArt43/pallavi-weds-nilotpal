@@ -19,9 +19,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Great+Vibes&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/v2.css?v=4">
+  <link rel="stylesheet" href="css/v2.css?v=5">
 </head>
 <body class="is-locked">
+
+  <!-- ====================== INTRO FILM (plays first; js/intro.js) ====================== -->
+  <div id="intro" class="intro" role="dialog" aria-label="Pallavi and Nilotpal, the invitation film">
+    <video id="intro-video" class="intro__video" playsinline muted preload="auto"></video>
+    <button type="button" class="intro__sound" id="intro-sound"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zm-2.5-8.8v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z" fill="currentColor"/></svg><span>Tap for sound</span></button>
+    <button type="button" class="intro__skip" id="intro-skip">Skip</button>
+    <button type="button" class="intro__open" id="intro-open" tabindex="-1">Open Invitation</button>
+  </div>
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs><clipPath id="clip-arch" clipPathUnits="objectBoundingBox"><path id="clip-arch-path" d="M0 1L0 0L1 0L1 1Z"/></clipPath></defs>
@@ -227,11 +235,12 @@
   <script src="js/vendor/gsap.min.js"></script>
   <script src="js/vendor/ScrollTrigger.min.js"></script>
   <script src="js/vendor/lenis.min.js"></script>
-  <script src="js/config.js?v=4"></script>
-  <script src="js/art.js?v=4"></script>
-  <script src="js/scenes.js?v=4"></script>
-  <script src="js/fx.js?v=4"></script>
-  <script src="js/sound.js?v=4"></script>
-  <script src="js/app.js?v=4"></script>
+  <script src="js/config.js?v=5"></script>
+  <script src="js/art.js?v=5"></script>
+  <script src="js/scenes.js?v=5"></script>
+  <script src="js/fx.js?v=5"></script>
+  <script src="js/sound.js?v=5"></script>
+  <script src="js/app.js?v=5"></script>
+  <script src="js/intro.js?v=5"></script>
 </body>
 </html>
