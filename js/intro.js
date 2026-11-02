@@ -26,8 +26,8 @@
   const skipBtn = document.getElementById('intro-skip');
   // tall screens get the phone cut; wide screens get the film centred over its own soft glow
   const cut = innerWidth / innerHeight > 0.85 ? 'wide' : 'phone';
-  video.poster = `assets/intro/poster-${cut}.jpg?v=6`;
-  video.src = `assets/intro/intro-${cut}.mp4?v=6`;
+  video.poster = `assets/intro/poster-${cut}.jpg?v=7`;
+  video.src = `assets/intro/intro-${cut}.mp4?v=7`;
 
   let started = false, leaving = false, failed = false, skipTimer = 0;
   const playing = () => {

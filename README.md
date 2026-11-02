@@ -43,7 +43,9 @@ phone numbers) is in **`js/config.js`**; nothing else needs touching.
    (Scenes also exist for Shivcharcha, Satyanarayan, Devpoojan, Haldi, Sangeet and Reception. Use `icon: "shiv"`, `"satyanarayan"`, `"devpoojan"`, `"haldi"`, `"sangeet"` or `"reception"`.)
 8. **Venue:** map and directions, plus travel tips for outstation guests.
 9. **Family:** blessings, both families, and a line from the little ones.
-10. **For any details:** contact cards with Call and WhatsApp buttons.
+10. **For any details:** contact cards with Call and WhatsApp buttons. Hidden for now: guests asked for
+    Piyush's number to come off the site (November 2026), so `contacts` in `config.js` is empty, which
+    leaves out the whole section and its menu link. Add a contact there to bring it back.
 11. **Finale:** a night sky full of lanterns. Guests can tap to launch fireworks.
 
 Tapping anywhere scatters marigold petals. On a computer, the mouse leaves a trail of fairy dust.
