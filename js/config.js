@@ -94,9 +94,7 @@ window.WEDDING = {
   },
 
   /* ---------- For any details ---------- */
-  contacts: [
-    { name: "Piyush Sinha", relation: "Brother of the bride", phone: "+91 83938 20860" },
-  ],
+  contacts: [],                                       // e.g. { name, relation, phone }; empty hides the Contact section and its menu link
 
   /* ---------- Blessing verse on the invitation scroll ---------- */
   shloka: {

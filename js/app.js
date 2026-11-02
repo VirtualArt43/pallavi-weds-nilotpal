@@ -491,7 +491,9 @@
 
   /* ------------------------------------------------------------ contacts */
   function buildContacts() {
-    $('#contacts').innerHTML = (W.contacts || []).map((c, i) => {
+    // no contacts: the whole section goes, and with it its menu link (buildNav runs after this)
+    if (!(W.contacts || []).length) { const s = $('#contact'); if (s) s.remove(); return; }
+    $('#contacts').innerHTML = W.contacts.map((c, i) => {
       const tel = (c.phone || '').replace(/[^\d+]/g, ''), wa = tel.replace(/\D/g, '');
       return `<div class="person-card" data-reveal style="--i:${i}">
         <div class="person-card__ring">${Art.icons.phone}</div>
