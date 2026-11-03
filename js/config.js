@@ -66,7 +66,7 @@ window.WEDDING = {
   events: [
     {
       icon: "mehendi", title: "Mehendi", hindi: "मेहंदी",
-      date: "2026-11-25", start: "16:00",
+      date: "2026-11-25", start: "19:00",
       venue: "The Red Velvet Hotel Samarpan", address: "Kidwaipuri, Patna", mapLink: "https://maps.app.goo.gl/72uXSQ9RzUtwkaZM9",
       description: "An evening of henna, folk songs and laughter as intricate patterns bloom on the bride's hands — followed by dinner.",
     },
