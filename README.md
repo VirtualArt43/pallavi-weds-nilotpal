@@ -48,6 +48,12 @@ phone numbers) is in **`js/config.js`**; nothing else needs touching.
     leaves out the whole section and its menu link. Add a contact there to bring it back.
 11. **Finale:** a night sky full of lanterns. Guests can tap to launch fireworks.
 
+**Auto scroll:** guests may not know there is more below the names, so 5 seconds after the doors open the
+page drifts slowly down by itself, about one screen every 16 seconds (`autoScroll()` in `js/app.js`). Any
+touch, wheel, key or click hands control to the guest; after 8 quiet seconds it carries on from wherever
+they are, it waits while the menu is open, and it rests at the end. On computers it moves the page through
+Lenis, so the guest's next wheel continues from the right place. `?noscroll` turns it off while editing.
+
 Tapping anywhere scatters marigold petals. On a computer, the mouse leaves a trail of fairy dust.
 
 ## Files

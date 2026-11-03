@@ -161,6 +161,39 @@
     document.body.classList.remove('is-locked');
     if (lenis) lenis.start();
     ScrollTrigger.refresh();
+    autoScroll();
+  }
+
+  /* ------------------------------------------------------------ auto scroll */
+  // Guests may not know there is more below the names, so a few seconds after the doors open the page
+  // drifts slowly down by itself, about a screen every 16 seconds. Any touch, wheel, key or click hands
+  // control to the guest; after 8 quiet seconds it drifts on from wherever they left it, and it rests at
+  // the end. ?noscroll turns it off.
+  function autoScroll() {
+    if (reduce || new URLSearchParams(location.search).has('noscroll')) return;
+    const START = 5000, IDLE = 8000;
+    let last = performance.now() - IDLE + START, prev = 0, pos = 0, set = 0, speed = 0, running = false;
+    const handBack = () => { last = performance.now(); running = false; };
+    ['touchstart', 'wheel', 'keydown', 'pointerdown'].forEach((ev) => window.addEventListener(ev, handBack, { passive: true, capture: true }));
+    const tick = (now) => {
+      requestAnimationFrame(tick);
+      const dt = prev ? Math.min(0.05, (now - prev) / 1000) : 0;
+      prev = now;
+      if (now - last < IDLE || $('#menu').classList.contains('is-open')) { running = false; return; }
+      // the page moved without us (scrollbar, a menu link, find in page): the guest is in charge again
+      if (running && Math.abs(scrollY - set) > 3) { handBack(); return; }
+      if (!running) { running = true; pos = scrollY; speed = 0; }
+      const end = document.documentElement.scrollHeight - innerHeight;
+      if (pos >= end - 1) { set = scrollY; return; }
+      const full = innerHeight / 16;
+      speed = Math.min(full, speed + (full * dt) / 1.5);         // eases in over a second and a half
+      pos = Math.min(end, pos + speed * dt);
+      const dpr = window.devicePixelRatio || 1;
+      set = Math.round(pos * dpr) / dpr;
+      // on computers Lenis owns the scroll: move it through Lenis, or the guest's next wheel would jump back
+      if (lenis) lenis.scrollTo(set, { immediate: true }); else window.scrollTo(0, set);
+    };
+    requestAnimationFrame(tick);
   }
 
   /* ------------------------------------------------------------ hero */
