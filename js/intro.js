@@ -12,6 +12,9 @@
   const intro = document.getElementById('intro');
   if (!intro) return;
   const q = new URLSearchParams(location.search);
+  // the ?v= that the update check below adds only matters to the browser's cache: keep the address clean,
+  // so a link copied from the address bar and shared looks like the real one
+  if (q.has('v')) { const u = new URL(location.href); u.searchParams.delete('v'); history.replaceState(history.state, '', u); }
   if (q.has('open') || q.has('nointro')) { intro.remove(); return; }
 
   // a refresh starts at the top, like a first visit, and never lands halfway down the page

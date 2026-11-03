@@ -37,7 +37,7 @@
   /* ------------------------------------------------------------ text */
   function bindText() {
     $$('[data-w]').forEach((el) => { const v = get(el.dataset.w); if (v === '' || v == null) el.hidden = !v; if (v) el.textContent = v; });
-    document.title = `${W.bride.name} & ${W.groom.name} — Wedding Invitation`;
+    document.title = `${W.bride.name} & ${W.groom.name} · Wedding Invitation`;
     $('#hero-date').textContent = `${fmt(weddingDate, { weekday: 'long' })} · ${ordinal(+dd)} ${fmt(weddingDate, { month: 'long' })} ${yy}`;
     $('#gate-date').textContent = `${dd} · ${mm} · ${yy}`;
     $('#finale-date').textContent = longDate(weddingDate);
