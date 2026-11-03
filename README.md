@@ -71,7 +71,7 @@ Tapping anywhere scatters marigold petals. On a computer, the mouse leaves a tra
 | `css/v2.css` | All styling (phone and desktop) |
 | `assets/photos/` | The portrait (see below) |
 | `assets/music/` | Optional `shehnai.mp3` |
-| `assets/og.jpg` | The preview image shown when the link is shared on WhatsApp |
+| `assets/share-card.jpg` | The preview card shown when the link is shared on WhatsApp: Codex artwork lettered in `../share-card/compose.html`, rendered by `../share-card/render_card.py` (keep it under 200 KB, and use a new file name for a new card). `og.jpg` is the old one. |
 
 ## The portrait
 
