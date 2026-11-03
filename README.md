@@ -49,7 +49,7 @@ phone numbers) is in **`js/config.js`**; nothing else needs touching.
 11. **Finale:** a night sky full of lanterns. Guests can tap to launch fireworks.
 
 **Auto scroll:** guests may not know there is more below the names, so 1 second after the doors open the
-page drifts slowly down by itself, about one screen every 12 seconds (`autoScroll()` in `js/app.js`). Any
+page drifts slowly down by itself, about one screen every 9 seconds (`autoScroll()` in `js/app.js`). Any
 touch, wheel, key or click hands control to the guest; 3.5 seconds after their last touch it carries on from
 wherever they are, it waits while the menu is open, and it rests at the end. On computers it moves the page through
 Lenis, so the guest's next wheel continues from the right place. `?noscroll` turns it off while editing.

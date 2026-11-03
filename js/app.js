@@ -166,7 +166,7 @@
 
   /* ------------------------------------------------------------ auto scroll */
   // Guests may not know there is more below the names, so a second after the doors open the page
-  // drifts slowly down by itself, about a screen every 12 seconds. Any touch, wheel, key or click hands
+  // drifts slowly down by itself, about a screen every 9 seconds. Any touch, wheel, key or click hands
   // control to the guest; 3.5 seconds after their last touch it drifts on from wherever they left it, and
   // it rests at the end. ?noscroll turns it off.
   function autoScroll() {
@@ -186,7 +186,7 @@
       if (!running) { running = true; pos = scrollY; speed = 0; }
       const end = document.documentElement.scrollHeight - innerHeight;
       if (pos >= end - 1) { set = scrollY; return; }
-      const full = innerHeight / 12;
+      const full = innerHeight / 9;                              // seconds per screen: smaller is faster
       speed = Math.min(full, speed + (full * dt) / 1.5);         // eases in over a second and a half
       pos = Math.min(end, pos + speed * dt);
       const dpr = window.devicePixelRatio || 1;
