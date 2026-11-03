@@ -167,14 +167,15 @@
   /* ------------------------------------------------------------ auto scroll */
   // Guests may not know there is more below the names, so a second after the doors open the page
   // drifts slowly down by itself, about a screen every 12 seconds. Any touch, wheel, key or click hands
-  // control to the guest; after 8 quiet seconds it drifts on from wherever they left it, and it rests at
-  // the end. ?noscroll turns it off.
+  // control to the guest; 3.5 seconds after their last touch it drifts on from wherever they left it, and
+  // it rests at the end. ?noscroll turns it off.
   function autoScroll() {
     if (reduce || new URLSearchParams(location.search).has('noscroll')) return;
-    const START = 1000, IDLE = 8000;
+    const START = 1000, IDLE = 3500;
     let last = performance.now() - IDLE + START, prev = 0, pos = 0, set = 0, speed = 0, running = false;
     const handBack = () => { last = performance.now(); running = false; };
-    ['touchstart', 'wheel', 'keydown', 'pointerdown'].forEach((ev) => window.addEventListener(ev, handBack, { passive: true, capture: true }));
+    // touchmove and touchend too, so the wait counts from the moment the finger lifts
+    ['touchstart', 'touchmove', 'touchend', 'wheel', 'keydown', 'pointerdown'].forEach((ev) => window.addEventListener(ev, handBack, { passive: true, capture: true }));
     const tick = (now) => {
       requestAnimationFrame(tick);
       const dt = prev ? Math.min(0.05, (now - prev) / 1000) : 0;
